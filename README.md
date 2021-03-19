@@ -1,6 +1,8 @@
 # docker-rocksdb-sshd
 Alpine Linux image with compiled and installed RocksDB with all compression libraries with ssh
 
+This's a deprecated branch because it can't be remote on VS Code by remote development.
+
 ## Usage
 
 ```
