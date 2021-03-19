@@ -1,4 +1,3 @@
-# FROM golang:1.14.4-alpine
 FROM alpine:3.12.4
 
 RUN echo "@testing http://nl.alpinelinux.org/alpine/edge/testing" >>/etc/apk/repositories
