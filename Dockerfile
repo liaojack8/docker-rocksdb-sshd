@@ -26,8 +26,8 @@ RUN cd /tmp && \
     cp librocksdb.so* /usr/local/rocksdb/lib && \
     cp /usr/local/rocksdb/lib/librocksdb.so* /usr/lib/ && \
     cp -r include /usr/local/rocksdb/ && \
-    cp -r include/* /usr/include/ && \
-    rm -R /tmp/rocksdb/
+    cp -r include/* /usr/include/ && 
+# RUN rm -R /tmp/rocksdb/
 
 # Setup SSH
 RUN apk --update add --no-cache openssh bash \
