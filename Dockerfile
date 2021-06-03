@@ -2,7 +2,9 @@ FROM alpine:3.12.4
 
 RUN echo "@testing http://nl.alpinelinux.org/alpine/edge/testing" >>/etc/apk/repositories
 RUN apk add --update --no-cache build-base linux-headers git cmake bash perl #wget mercurial g++ autoconf libgflags-dev cmake bash
-RUN apk add --update --no-cache zlib zlib-dev bzip2 bzip2-dev snappy snappy-dev lz4 lz4-dev zstd@testing zstd-dev@testing libtbb-dev@testing libtbb@testing
+RUN apk add --update --no-cache zstd-dev zstd zlib-dev bzip2 bzip2-dev snappy snappy-dev lz4 lz4-dev
+
+#libtbb-dev libtbb # 2021.06.03 libtbb installation error
 
 # installing latest gflags
 RUN cd /tmp && \
