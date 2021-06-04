@@ -1,12 +1,12 @@
 FROM alpine:3.12.4
 
-RUN echo "@testing http://nl.alpinelinux.org/alpine/edge/testing" >>/etc/apk/repositories
-RUN apk add --update --no-cache build-base linux-headers git cmake bash perl #wget mercurial g++ autoconf libgflags-dev cmake bash
-RUN apk add --update --no-cache zstd-dev zstd zlib-dev bzip2 bzip2-dev snappy snappy-dev lz4 lz4-dev
+RUN echo "http://alpine.cs.nctu.edu.tw/v3.12/main/" >>/etc/apk/repositories
+RUN apk add --update --no-cache build-base linux-headers git cmake bash perl curl #wget mercurial g++ autoconf python2 python3 cmake bash
+RUN apk add --update --no-cache libgflags-dev zstd-dev zstd zlib-dev bzip2 bzip2-dev snappy snappy-dev lz4 lz4-dev
 
 #libtbb-dev libtbb # 2021.06.03 libtbb installation error
 
-# installing latest gflags
+# Install latest gflags
 RUN cd /tmp && \
     git clone https://github.com/gflags/gflags.git && \
     cd gflags && \
@@ -30,6 +30,16 @@ RUN cd /tmp && \
     cp -r include /usr/local/rocksdb/ && \
     cp -r include/* /usr/include/
 # RUN rm -R /tmp/rocksdb/
+
+# Configure java development environment for YCSB
+# RUN 
+
+# Download YCSB
+# For rocksdb, just install and you can using the tool soon
+# But for leveldb, because YCSB doesn't support by official, you shlould compile yourself.
+RUN cd /tmp &&\
+    curl -O --location https://github.com/brianfrankcooper/YCSB/releases/download/0.12.0/ycsb-0.12.0.tar.gz &&\
+    tar xfvz ycsb-0.12.0.tar.gz && rm ycsb-0.12.0.tar.gz
 
 # Setup SSH
 RUN apk --update add --no-cache openssh bash \
